@@ -1,5 +1,6 @@
 package com.example.data.db
 
+import com.example.data.db.schema.NotificationTable
 import com.example.data.db.schema.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -9,13 +10,13 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
-
 object DatabaseFactory {
 
-    fun init(){
+    fun init() {
         Database.connect(hikari())
         transaction {
             SchemaUtils.create(UserTable)
+            SchemaUtils.create(NotificationTable)
         }
     }
 
