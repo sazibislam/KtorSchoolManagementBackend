@@ -22,8 +22,14 @@ fun Application.authRoutes(repository: AuthRepository) {
             }
 
             post("/forget") {
-                val params = call.receive<ForgetUserParams>()
-                val result = repository.sendForgotPasswordEmail(params)
+                val params = call.receive<UserParams>()
+                val result = repository.sendOTPEmail(params)
+                call.respond(result.statusCode, result)
+            }
+
+            post("/reset") {
+                val params = call.receive<UserParams>()
+                val result = repository.resetUserCred(params)
                 call.respond(result.statusCode, result)
             }
         }

@@ -4,8 +4,8 @@ import com.example.data.response.BaseResponse
 import com.example.data.response.OTPResponse
 import com.example.data.service.auth.AuthService
 import com.example.plugins.route.auth.CreateUserParams
-import com.example.plugins.route.auth.ForgetUserParams
 import com.example.plugins.route.auth.UserLoginParams
+import com.example.plugins.route.auth.UserParams
 import com.example.plugins.security.JwtConfig
 import com.example.utils.*
 
@@ -39,24 +39,38 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun sendForgotPasswordEmail(params: ForgetUserParams): BaseResponse<Any> =
-        sendOTPEmail(params.email)
+    override suspend fun resetUserCred(params: UserParams): BaseResponse<Any> {
 
-    override suspend fun verifyEmail(email: String): BaseResponse<Any> =
-        if (!isEmailExist(email)) {
-            BaseResponse.ErrorResponse(message = USER_INVALID_FAILURE)
+        return if (!isEmailExist(params.email)) {
+            BaseResponse.ErrorResponse(message = MESSAGE_EMAIL_NOT_REGISTERED)
         } else {
-            val user = authService.findUserByEmail(email)
-            BaseResponse.SuccessResponse(data = user!!, message = USER_PASSWORD_UPDATED_SUCCESS)
+            val user = authService.updateUserCred(params)
+            if (user != null) {
+                val token = JwtConfig.instance.createAccessToken(user.id)
+                user.authToken = token
+                BaseResponse.SuccessResponse(data = user, message = USER_PASSWORD_UPDATED_SUCCESS)
+            } else {
+                BaseResponse.ErrorResponse(GENERIC_ERROR)
+            }
         }
+    }
 
-    override suspend fun sendOTPEmail(email: String): BaseResponse<Any> =
-        if (!isEmailExist(email)) {
+    override suspend fun verifyEmail(params: UserParams): BaseResponse<Any> {
+
+        /*email validation
+        * send otp request
+        * */
+
+        return BaseResponse.SuccessResponse(data = "", message = USER_INVALID_FAILURE)
+    }
+
+    override suspend fun sendOTPEmail(params: UserParams): BaseResponse<Any> =
+        if (!isEmailExist(params.email)) {
             BaseResponse.ErrorResponse(message = USER_INVALID_FAILURE)
         } else {
 
             val otp = getRandomNumber()
-            sendOtpEmail(otp, email, "")
+            sendOtpEmail(otp, params.email, params.fullName ?: TECH_NEST)
 
             val response = OTPResponse(otp = otp)
             BaseResponse.SuccessResponse(data = response, message = USER_VERIFY_EMAIL)

@@ -13,7 +13,7 @@ fun sendOtpEmail(otp: String, userEmail: String, userName: String) {
         simpleEmail.setSmtpPort(EMAIL_SMTP_PORT)
         simpleEmail.setAuthenticator(DefaultAuthenticator(EMAIL_USERNAME, EMAIL_PASSWORD))
         simpleEmail.isSSLOnConnect = true
-        simpleEmail.setFrom(EMAIL_FROM, EMAIL_FROM_NAME)
+        simpleEmail.setFrom(EMAIL_FROM, TECH_NEST)
         simpleEmail.subject = "Verification Code $otp"
 
         simpleEmail.setContent(otpEmailTemplate(otp), EMAIL_HTML_CONTENT_TYPE)

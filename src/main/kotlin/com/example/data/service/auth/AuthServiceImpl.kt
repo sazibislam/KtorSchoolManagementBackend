@@ -5,6 +5,7 @@ import com.example.data.db.extention.toUser
 import com.example.data.db.schema.UserTable
 import com.example.data.model.User
 import com.example.plugins.route.auth.CreateUserParams
+import com.example.plugins.route.auth.UserParams
 import com.example.plugins.security.hash
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insert
@@ -47,14 +48,24 @@ class AuthServiceImpl : AuthService {
         return user
     }
 
-    override suspend fun forgetUserPassword(email: String, password: String): User? {
+    override suspend fun updateUserCred(params: UserParams): User? {
 
         val updatedUser = dbQuery {
-            UserTable.update({ UserTable.email eq email }) {
-                it[UserTable.password] = hash(password)
+            UserTable.update({ UserTable.email eq params.email }) { table_ ->
+                params.password?.let { pass_ ->
+                    table_[UserTable.password] = hash(pass_)
+                }
+
+                params.fullName?.let { name_ ->
+                    table_[UserTable.fullName] = name_
+                }
+
+                params.avatar?.let { avatar ->
+                    table_[UserTable.avatar] = avatar
+                }
             }
 
-            UserTable.select { UserTable.email.eq(email) }
+            UserTable.select { UserTable.email.eq(params.email) }
                 .map { it.toUser() }.singleOrNull()
         }
         return updatedUser
