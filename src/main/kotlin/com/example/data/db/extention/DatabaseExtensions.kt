@@ -11,6 +11,6 @@ fun ResultRow?.toUser(): User? {
         fullName = this[UserTable.fullName],
         avatar = this[UserTable.avatar],
         email = this[UserTable.email],
-        createdAt = this[UserTable.createdAt].toString(),
+        updatedAt = this[UserTable.updatedAt].toString(),
     )
 }
