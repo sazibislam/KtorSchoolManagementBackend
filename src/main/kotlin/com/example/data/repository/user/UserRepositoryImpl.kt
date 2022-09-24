@@ -10,4 +10,8 @@ class UserRepositoryImpl(
     override suspend fun getUser(id: Int): BaseResponse<Any> {
         return BaseResponse.SuccessResponse(data = userService.getUser(id))
     }
+
+    override suspend fun getNotification(id: Int): BaseResponse<Any> {
+        return BaseResponse.SuccessResponse(data = userService.getAllNotification(id))
+    }
 }

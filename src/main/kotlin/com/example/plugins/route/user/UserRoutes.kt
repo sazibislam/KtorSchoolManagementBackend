@@ -17,6 +17,14 @@ fun Application.userRoutes(repository: UserRepository) {
                     call.respond(result.statusCode, result)
                 }
             }
+
+            route("/notification") {
+                get {
+                    val principal = call.principal<UserIdPrincipalForUser>()
+                    val result = repository.getNotification(principal?.id!!)
+                    call.respond(result.statusCode, result)
+                }
+            }
         }
     }
 }
