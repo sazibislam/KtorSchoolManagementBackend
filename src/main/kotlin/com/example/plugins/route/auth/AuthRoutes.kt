@@ -32,6 +32,12 @@ fun Application.authRoutes(repository: AuthRepository) {
                 val result = repository.resetUserCred(params)
                 call.respond(result.statusCode, result)
             }
+
+            post("/verify") {
+                val params = call.receive<UserParams>()
+                val result = repository.verifyEmail(params)
+                call.respond(result.statusCode, result)
+            }
         }
     }
 }

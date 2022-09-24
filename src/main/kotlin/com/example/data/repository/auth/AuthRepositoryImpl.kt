@@ -55,15 +55,12 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun verifyEmail(params: UserParams): BaseResponse<Any> {
+    override suspend fun verifyEmail(params: UserParams): BaseResponse<Any> =
 
-        /*email validation
-        * send otp request
-        * */
-
-
-        return BaseResponse.SuccessResponse(data = "", message = USER_INVALID_FAILURE)
-    }
+        when (EMAIL_ADDRESS_PATTERN.matcher(params.email).matches()) {
+            true -> sendOTPEmail(params)
+            else -> BaseResponse.SuccessResponse(data = "", message = USER_INVALID_FAILURE)
+        }
 
     override suspend fun sendOTPEmail(params: UserParams): BaseResponse<Any> =
         if (!isEmailExist(params.email)) {
