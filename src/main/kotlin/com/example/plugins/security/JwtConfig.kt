@@ -3,9 +3,11 @@ package com.example.plugins.security
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
+import java.util.*
 
-class JwtConfig private constructor(secret: String){
+class JwtConfig private constructor(secret: String) {
 
+    private val validityInMs = 1000 * 3600 * 24 * 7 //
     private val algorithm = Algorithm.HMAC256(secret)
 
     val verifier: JWTVerifier = JWT
@@ -16,12 +18,15 @@ class JwtConfig private constructor(secret: String){
 
     fun createAccessToken(id: Int): String = JWT
         .create()
+        .withExpiresAt(getExpiration())
         .withIssuer(ISSUER)
         .withAudience(AUDIENCE)
         .withClaim(CLAIM, id)
         .sign(algorithm)
 
-    companion object{
+    private fun getExpiration() = Date(System.currentTimeMillis() + validityInMs)
+
+    companion object {
         private const val ISSUER = "my-story-app"
         private const val AUDIENCE = "my-story-app"
         const val CLAIM = "id"
@@ -29,9 +34,9 @@ class JwtConfig private constructor(secret: String){
         lateinit var instance: JwtConfig
             private set
 
-        fun initialize(secret: String){
-            synchronized(this){
-                if(!this::instance.isInitialized){
+        fun initialize(secret: String) {
+            synchronized(this) {
+                if (!this::instance.isInitialized) {
                     instance = JwtConfig(secret)
                 }
             }

@@ -46,9 +46,7 @@ class AuthRepositoryImpl(
         } else {
             val user = authService.updateUserCred(params)
             if (user != null) {
-                val token = JwtConfig.instance.createAccessToken(user.id)
-                user.authToken = token
-                BaseResponse.SuccessResponse(data = user, message = USER_PASSWORD_UPDATED_SUCCESS)
+                BaseResponse.SuccessResponse(data = "", message = USER_PASSWORD_UPDATED_SUCCESS)
             } else {
                 BaseResponse.ErrorResponse(message = GENERIC_ERROR)
             }
