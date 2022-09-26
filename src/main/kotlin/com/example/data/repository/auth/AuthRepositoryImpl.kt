@@ -19,7 +19,7 @@ class AuthRepositoryImpl(
         } else {
             val user = authService.registerUser(params)
             if (user != null) {
-                BaseResponse.SuccessResponse(data = "", message = "${user.fullName} $USER_REGISTRATION_SUCCESS")
+                BaseResponse.SuccessResponse(data = "", message = USER_REGISTRATION_SUCCESS)
             } else {
                 BaseResponse.ErrorResponse(message = GENERIC_ERROR)
             }
