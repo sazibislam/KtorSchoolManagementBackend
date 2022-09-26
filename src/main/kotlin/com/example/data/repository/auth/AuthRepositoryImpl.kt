@@ -29,7 +29,7 @@ class AuthRepositoryImpl(
     override suspend fun loginUser(params: UserLoginParams): BaseResponse<Any> {
         val user = authService.loginUser(params.email, params.password)
         return if (user != null) {
-            val token = JwtConfig.instance.createAccessToken(id = user.id, version = params.version, uuid = params.uuid)
+            val token = JwtConfig.instance.createAccessToken(id = user.id, uuid = params.uuid)
             user.authToken = token
             BaseResponse.SuccessResponse(data = user, message = USER_LOGIN_SUCCESS)
         } else {

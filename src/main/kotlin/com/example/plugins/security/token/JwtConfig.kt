@@ -16,7 +16,7 @@ class JwtConfig private constructor(secret: String) {
         .withAudience(AUDIENCE)
         .build()
 
-    fun createAccessToken(id: Int, version: String, uuid: String): String = JWT
+    fun createAccessToken(id: Int, uuid: String): String = JWT
         .create()
         .withSubject("Android")
         .withIssuedAt(Date())
@@ -24,7 +24,6 @@ class JwtConfig private constructor(secret: String) {
         .withIssuer(ISSUER)
         .withAudience(AUDIENCE)
         .withClaim(CLAIM, id)
-        .withClaim(VERSION, version)
         .withClaim(UUID, uuid)
         .sign(algorithm)
 
