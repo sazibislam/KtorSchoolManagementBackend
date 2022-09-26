@@ -10,6 +10,14 @@ import io.ktor.server.routing.*
 fun Application.userRoutes(repository: UserRepository) {
     routing {
         authenticate {
+            route("/logout") {
+                post {
+                    val principal = call.principal<UserIdPrincipalForUser>()
+                    val result = repository.logoutUser(principal?.id!!)
+                    call.respond(result.statusCode, result)
+                }
+            }
+
             route("/user") {
                 get {
                     val principal = call.principal<UserIdPrincipalForUser>()

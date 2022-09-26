@@ -7,7 +7,7 @@ import java.util.*
 
 class JwtConfig private constructor(secret: String) {
 
-    private val validityInMs = 1000 * 3600 * 24 * 7 //
+    private val validityInMs = 1000 * 3600 * 24 * 7 //7d
     private val algorithm = Algorithm.HMAC256(secret)
 
     val verifier: JWTVerifier = JWT
@@ -18,6 +18,8 @@ class JwtConfig private constructor(secret: String) {
 
     fun createAccessToken(id: Int): String = JWT
         .create()
+        .withSubject("Android-uuid")
+        .withIssuedAt(Date())
         .withExpiresAt(getExpiration())
         .withIssuer(ISSUER)
         .withAudience(AUDIENCE)
@@ -27,8 +29,9 @@ class JwtConfig private constructor(secret: String) {
     private fun getExpiration() = Date(System.currentTimeMillis() + validityInMs)
 
     companion object {
-        private const val ISSUER = "my-story-app"
-        private const val AUDIENCE = "my-story-app"
+        private const val ISSUER = "my-story-app" //"http://0.0.0.0:8080/"
+        private const val AUDIENCE = "my-story-app" //"http://0.0.0.0:8080/hello"
+        const val SECURITY = "my-story-app" //J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         const val CLAIM = "id"
 
         lateinit var instance: JwtConfig
