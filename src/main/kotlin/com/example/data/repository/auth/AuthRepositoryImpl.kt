@@ -6,7 +6,7 @@ import com.example.data.service.auth.AuthService
 import com.example.plugins.route.auth.CreateUserParams
 import com.example.plugins.route.auth.UserLoginParams
 import com.example.plugins.route.auth.UserParams
-import com.example.plugins.security.JwtConfig
+import com.example.plugins.security.token.JwtConfig
 import com.example.utils.*
 
 class AuthRepositoryImpl(

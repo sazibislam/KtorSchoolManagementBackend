@@ -1,4 +1,4 @@
-package com.example.plugins.security
+package com.example.plugins.security.token
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier

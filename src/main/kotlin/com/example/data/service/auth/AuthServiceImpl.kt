@@ -6,7 +6,7 @@ import com.example.data.db.schema.UserTable
 import com.example.data.model.User
 import com.example.plugins.route.auth.CreateUserParams
 import com.example.plugins.route.auth.UserParams
-import com.example.plugins.security.hash
+import com.example.plugins.security.hashing.hash
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select

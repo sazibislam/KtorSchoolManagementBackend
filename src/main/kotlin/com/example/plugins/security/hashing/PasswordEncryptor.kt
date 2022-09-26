@@ -1,4 +1,4 @@
-package com.example.plugins.security
+package com.example.plugins.security.hashing
 
 import io.ktor.util.*
 import javax.crypto.Mac

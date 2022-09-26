@@ -1,7 +1,8 @@
 package com.example.plugins.security
 
 import com.example.data.response.BaseResponse
-import com.example.plugins.security.JwtConfig.Companion.SECURITY
+import com.example.plugins.security.token.JwtConfig
+import com.example.plugins.security.token.JwtConfig.Companion.SECURITY
 import com.example.utils.INVALID_AUTHENTICATION_TOKEN
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -17,7 +18,7 @@ fun Application.configureSecurity() {
             validate {
                 val claim = it.payload.getClaim(JwtConfig.CLAIM).asInt()
                 if (claim != null) {
-                    UserIdPrincipalForUser(claim)
+                    UserPrincipalForUser(claim)
                 } else {
                     null
                 }
