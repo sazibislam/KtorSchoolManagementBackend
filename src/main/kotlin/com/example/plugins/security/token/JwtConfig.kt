@@ -16,14 +16,16 @@ class JwtConfig private constructor(secret: String) {
         .withAudience(AUDIENCE)
         .build()
 
-    fun createAccessToken(id: Int): String = JWT
+    fun createAccessToken(id: Int, version: String, uuid: String): String = JWT
         .create()
-        .withSubject("Android-uuid")
+        .withSubject("Android")
         .withIssuedAt(Date())
         .withExpiresAt(getExpiration())
         .withIssuer(ISSUER)
         .withAudience(AUDIENCE)
         .withClaim(CLAIM, id)
+        .withClaim(VERSION, version)
+        .withClaim(UUID, uuid)
         .sign(algorithm)
 
     private fun getExpiration() = Date(System.currentTimeMillis() + validityInMs)
@@ -33,6 +35,8 @@ class JwtConfig private constructor(secret: String) {
         private const val AUDIENCE = "my-story-app" //"http://0.0.0.0:8080/hello"
         const val SECURITY = "my-story-app" //J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         const val CLAIM = "id"
+        const val VERSION = "version"
+        const val UUID = "uuid"
 
         lateinit var instance: JwtConfig
             private set

@@ -18,3 +18,6 @@ internal val EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"
 )
+
+const val PACKAGE_NAME = "package"
+const val PACKAGE_ANDROID = "com.tn.aipos"
