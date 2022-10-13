@@ -7,6 +7,8 @@ import com.example.data.db.schema.NotificationTable
 import com.example.data.db.schema.UserTable
 import com.example.data.model.Notification
 import com.example.data.model.User
+import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 
 class UserServiceImpl : UserService {
@@ -18,6 +20,20 @@ class UserServiceImpl : UserService {
     override suspend fun getAllNotification(id: Int): List<Notification> = dbQuery {
         NotificationTable.select { NotificationTable.userId eq id }.mapNotNull { row_ ->
             row_.toNotification()
+        }
+    }
+
+    override suspend fun deleteAllNotification(id: Int): Boolean = dbQuery {
+        NotificationTable.deleteWhere { NotificationTable.userId eq id } > 0
+    }
+
+    override suspend fun insertMocNotificationData(id: Int) {
+        dbQuery {
+            NotificationTable.insert {
+                it[userId] = id
+                it[title] = "Test Title"
+                it[note] = "Test Note"
+            }
         }
     }
 }

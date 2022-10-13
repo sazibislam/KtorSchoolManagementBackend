@@ -39,6 +39,14 @@ fun Application.userRoutes(repository: UserRepository) {
                             call.respond(result.statusCode, result)
                         }
                     }
+
+                    route("/delete_notification") {
+                        post {
+                            val principal = call.principal<UserPrincipalForUser>()
+                            val result = repository.deleteNotification(principal?.id!!)
+                            call.respond(result.statusCode, result)
+                        }
+                    }
                 }
             }
         }

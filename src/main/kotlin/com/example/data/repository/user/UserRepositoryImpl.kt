@@ -2,6 +2,7 @@ package com.example.data.repository.user
 
 import com.example.data.response.BaseResponse
 import com.example.data.service.user.UserService
+import com.example.utils.GENERIC_ERROR
 import com.example.utils.USER_LOGOUT_SUCCESS
 
 class UserRepositoryImpl(
@@ -19,5 +20,10 @@ class UserRepositoryImpl(
 
     override suspend fun getNotification(id: Int): BaseResponse<Any> {
         return BaseResponse.SuccessResponse(data = userService.getAllNotification(id))
+    }
+
+    override suspend fun deleteNotification(id: Int): BaseResponse<Any> {
+        return if (userService.deleteAllNotification(id)) BaseResponse.SuccessResponse(data = "")
+        else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
     }
 }
