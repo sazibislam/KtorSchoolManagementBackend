@@ -9,5 +9,6 @@ interface UserRepository {
     suspend fun getNotification(id: Int): BaseResponse<Any>
     suspend fun deleteNotification(id: Int): BaseResponse<Any>
     suspend fun getPosts(id: Int): BaseResponse<Any>
+    suspend fun getPostDetails(postId: Int?): BaseResponse<Any>
 
 }

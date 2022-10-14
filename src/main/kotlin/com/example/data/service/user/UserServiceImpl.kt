@@ -1,15 +1,13 @@
 package com.example.data.service.user
 
 import com.example.data.db.DatabaseFactory.dbQuery
-import com.example.data.db.extention.toComment
-import com.example.data.db.extention.toNotification
-import com.example.data.db.extention.toPost
-import com.example.data.db.extention.toUser
+import com.example.data.db.extention.*
 import com.example.data.db.schema.NotificationTable
 import com.example.data.db.schema.UserTable
 import com.example.data.db.schema.blog.*
 import com.example.data.model.Notification
 import com.example.data.model.Post
+import com.example.data.model.PostDetails
 import com.example.data.model.User
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
@@ -36,12 +34,22 @@ class UserServiceImpl : UserService {
         PostTable.select { PostTable.userId eq id }.mapNotNull { row_ ->
             val data = row_.toPost()
             if (data != null) {
-                data.comments = PostCommentTable.select { PostCommentTable.postId eq data.id }.mapNotNull { comment_ ->
-                    comment_.toComment()
-                }
                 data.reach = PostReachTable.select { PostReachTable.postId eq data.id }.map { reach_ ->
                     reach_[PostReachTable.reach].toString()
                 }.firstOrNull()
+            }
+            data
+        }
+    }
+
+    override suspend fun getPostDetails(id: Int): PostDetails = dbQuery {
+
+        PostDescriptionTable.select { PostDescriptionTable.postId eq id }.firstNotNullOf { row_ ->
+            val data = row_.toPostDetails()
+            if (data != null) {
+                data.comments = PostCommentTable.select { PostCommentTable.postId eq id }.mapNotNull { comment_ ->
+                    comment_.toComment()
+                }
             }
             data
         }
@@ -60,29 +68,29 @@ class UserServiceImpl : UserService {
             }
         }
 
-            dbQuery {
-                TagTable.insert {
-                    it[name] = "Test Tag post id"
-                }
-
-                PostTagTable.insert {
-                    it[postId] = 15
-                    it[tagId] = 1
-                }
-
-                PostDescriptionTable.insert {
-                    it[postId] = 15
-                    it[description] = "Test Description"
-                }
-                PostCommentTable.insert {
-                    it[postId] = 15
-                    it[comment] = "Test Comment"
-                }
-                PostReachTable.insert {
-                    it[postId] = 15
-                    it[reach] = 1
-                }
+        dbQuery {
+            TagTable.insert {
+                it[name] = "Test Tag post id"
             }
+
+            PostTagTable.insert {
+                it[postId] = 15
+                it[tagId] = 1
+            }
+
+            PostDescriptionTable.insert {
+                it[postId] = 15
+                it[description] = "Test Description"
+            }
+            PostCommentTable.insert {
+                it[postId] = 15
+                it[comment] = "Test Comment"
+            }
+            PostReachTable.insert {
+                it[postId] = 15
+                it[reach] = 1
+            }
+        }
 
     }
 }

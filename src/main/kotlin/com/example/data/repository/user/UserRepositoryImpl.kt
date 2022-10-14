@@ -28,4 +28,10 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
     override suspend fun getPosts(id: Int): BaseResponse<Any> {
         return BaseResponse.SuccessResponse(data = userService.getPosts(id))
     }
+
+    override suspend fun getPostDetails(postId: Int?): BaseResponse<Any> =
+        postId?.let {
+            return BaseResponse.SuccessResponse(data = userService.getPostDetails(postId))
+        } ?: BaseResponse.ErrorResponse(message = "Post Id Field is missing.")
+
 }

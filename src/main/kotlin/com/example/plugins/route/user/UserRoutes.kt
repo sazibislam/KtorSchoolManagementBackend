@@ -55,6 +55,14 @@ fun Application.userRoutes(repository: UserRepository) {
                             call.respond(result.statusCode, result)
                         }
                     }
+
+                    route("/get_post_details") {
+                        get {
+                            val postId = call.request.queryParameters["post_id"]?.toIntOrNull()
+                            val result = repository.getPostDetails(postId)
+                            call.respond(result.statusCode, result)
+                        }
+                    }
                 }
             }
         }
