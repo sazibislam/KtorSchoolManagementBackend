@@ -38,11 +38,11 @@ fun ResultRow?.toPost(): Post? {
     else Post(
         id = this[PostTable.id],
         title = this[PostTable.title],
-        description = this[PostDescriptionTable.description],
+        description = "",
         published = this[PostTable.published],
         image = this[PostTable.image],
         comments = null,
-        reach = this[PostReachTable.reach].toString(),
+        reach = "",
         createdAt = this[PostTable.createdAt].toString(),
         updatedAt = this[PostTable.updatedAt].toString()
     )

@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 object TagTable : Table("blog_tags") {
     val id = integer("id").autoIncrement()
-    val name = text("name")
+    val name = text("name").uniqueIndex()
     val createdAt = datetime("created_at").clientDefault { LocalDateTime.now() }
     val updatedAt = datetime("updated_at").clientDefault { LocalDateTime.now() }
 
