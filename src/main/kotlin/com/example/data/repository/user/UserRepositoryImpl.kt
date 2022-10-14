@@ -3,6 +3,7 @@ package com.example.data.repository.user
 import com.example.data.response.BaseResponse
 import com.example.data.service.user.UserService
 import com.example.utils.GENERIC_ERROR
+import com.example.utils.USER_ID_FIELD_FAILURE
 import com.example.utils.USER_LOGOUT_SUCCESS
 
 class UserRepositoryImpl(private val userService: UserService) : UserRepository {
@@ -32,6 +33,11 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
     override suspend fun getPostDetails(postId: Int?): BaseResponse<Any> =
         postId?.let {
             return BaseResponse.SuccessResponse(data = userService.getPostDetails(postId))
-        } ?: BaseResponse.ErrorResponse(message = "Post Id Field is missing.")
+        } ?: BaseResponse.ErrorResponse(message = USER_ID_FIELD_FAILURE)
+
+    override suspend fun deletePostComment(commentId: Int?): BaseResponse<Any> =
+        commentId?.let {
+            return BaseResponse.SuccessResponse(data = userService.deletePostComment(commentId))
+        } ?: BaseResponse.ErrorResponse(message = USER_ID_FIELD_FAILURE)
 
 }

@@ -63,6 +63,38 @@ fun Application.userRoutes(repository: UserRepository) {
                             call.respond(result.statusCode, result)
                         }
                     }
+
+                    route("/post") {
+                        post {
+                            val principal = call.principal<UserPrincipalForUser>()
+                        }
+                    }
+
+                    route("/update_post") {
+                        post {
+
+                        }
+                    }
+
+                    route("/delete_post") {
+                        post {
+
+                        }
+                    }
+
+                    route("/post_comment") {
+                        post {
+
+                        }
+                    }
+
+                    route("/delete_comment") {
+                        post {
+                            val commentId = call.request.queryParameters["comment_id"]?.toIntOrNull()
+                            val result = repository.deletePostComment(commentId)
+                            call.respond(result.statusCode, result)
+                        }
+                    }
                 }
             }
         }

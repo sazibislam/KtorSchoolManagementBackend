@@ -13,6 +13,7 @@ import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.statements.InsertStatement
+import org.jetbrains.exposed.sql.update
 
 class UserServiceImpl : UserService {
     override suspend fun getUser(id: Int): User {
@@ -42,17 +43,45 @@ class UserServiceImpl : UserService {
         }
     }
 
-    override suspend fun getPostDetails(id: Int): PostDetails = dbQuery {
+    override suspend fun getPostDetails(id: Int): PostDetails {
 
-        PostDescriptionTable.select { PostDescriptionTable.postId eq id }.firstNotNullOf { row_ ->
-            val data = row_.toPostDetails()
-            if (data != null) {
-                data.comments = PostCommentTable.select { PostCommentTable.postId eq id }.mapNotNull { comment_ ->
-                    comment_.toComment()
+        val counter: Int? = dbQuery {
+            PostReachTable.select { PostReachTable.postId eq id }.map { reach_ ->
+                reach_[PostReachTable.reach]
+            }.firstOrNull()
+        }
+
+        when (counter) {
+            null -> dbQuery {
+                PostReachTable.insert {
+                    it[postId] = id
+                    it[reach] = 1
                 }
             }
-            data
+
+            else -> dbQuery {
+                PostReachTable.update {
+                    it[postId] = id
+                    it[reach] = counter + 1
+                }
+            }
         }
+
+        return dbQuery {
+            PostDescriptionTable.select { PostDescriptionTable.postId eq id }.firstNotNullOf { row_ ->
+                val data = row_.toPostDetails()
+                if (data != null) {
+                    data.comments = PostCommentTable.select { PostCommentTable.postId eq id }.mapNotNull { comment_ ->
+                        comment_.toComment()
+                    }
+                }
+                data
+            }
+        }
+    }
+
+    override suspend fun deletePostComment(id: Int): PostDetails {
+        TODO("Not yet implemented")
     }
 
     override suspend fun insertMocData(id: Int) {
