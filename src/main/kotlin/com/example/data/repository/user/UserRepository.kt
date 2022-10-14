@@ -8,4 +8,6 @@ interface UserRepository {
     suspend fun logoutUser(id: Int): BaseResponse<Any>
     suspend fun getNotification(id: Int): BaseResponse<Any>
     suspend fun deleteNotification(id: Int): BaseResponse<Any>
+    suspend fun getPosts(id: Int): BaseResponse<Any>
+
 }

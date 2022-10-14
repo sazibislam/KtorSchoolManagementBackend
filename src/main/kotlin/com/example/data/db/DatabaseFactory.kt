@@ -2,6 +2,7 @@ package com.example.data.db
 
 import com.example.data.db.schema.NotificationTable
 import com.example.data.db.schema.UserTable
+import com.example.data.db.schema.blog.*
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,14 @@ object DatabaseFactory {
         transaction {
             SchemaUtils.create(UserTable)
             SchemaUtils.create(NotificationTable)
+            SchemaUtils.create(
+                PostTable,
+                PostDescriptionTable,
+                PostCommentTable,
+                PostReachTable,
+                PostTagTable,
+                TagTable
+            )
         }
     }
 

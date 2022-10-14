@@ -47,6 +47,14 @@ fun Application.userRoutes(repository: UserRepository) {
                             call.respond(result.statusCode, result)
                         }
                     }
+
+                    route("/get_post") {
+                        get {
+                            val principal = call.principal<UserPrincipalForUser>()
+                            val result = repository.getPosts(principal?.id!!)
+                            call.respond(result.statusCode, result)
+                        }
+                    }
                 }
             }
         }

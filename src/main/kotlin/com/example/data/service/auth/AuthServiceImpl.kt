@@ -53,11 +53,11 @@ class AuthServiceImpl : AuthService {
         val updatedUser = dbQuery {
             UserTable.update({ UserTable.email eq params.email }) { table_ ->
                 params.password?.let { pass_ ->
-                    table_[UserTable.password] = hash(pass_)
+                    table_[password] = hash(pass_)
                 }
 
                 params.fullName?.let { name_ ->
-                    table_[UserTable.fullName] = name_
+                    table_[fullName] = name_
                 }
 
                 params.avatar?.let { avatar ->

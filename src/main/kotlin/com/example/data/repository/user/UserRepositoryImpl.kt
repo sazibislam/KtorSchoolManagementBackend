@@ -5,9 +5,7 @@ import com.example.data.service.user.UserService
 import com.example.utils.GENERIC_ERROR
 import com.example.utils.USER_LOGOUT_SUCCESS
 
-class UserRepositoryImpl(
-    private val userService: UserService
-) : UserRepository {
+class UserRepositoryImpl(private val userService: UserService) : UserRepository {
 
     override suspend fun getUser(id: Int): BaseResponse<Any> {
         return BaseResponse.SuccessResponse(data = userService.getUser(id))
@@ -25,5 +23,9 @@ class UserRepositoryImpl(
     override suspend fun deleteNotification(id: Int): BaseResponse<Any> {
         return if (userService.deleteAllNotification(id)) BaseResponse.SuccessResponse(data = "")
         else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+    }
+
+    override suspend fun getPosts(id: Int): BaseResponse<Any> {
+        return BaseResponse.SuccessResponse(data = userService.getPosts(id))
     }
 }
