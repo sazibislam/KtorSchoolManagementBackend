@@ -43,7 +43,24 @@ class UserServiceImpl : UserService {
         }
     }
 
-    override suspend fun getPostDetails(id: Int): PostDetails {
+    override suspend fun getPostDetails(id: Int): PostDetails =
+        dbQuery {
+            PostDescriptionTable.select { PostDescriptionTable.postId eq id }.firstNotNullOf { row_ ->
+                val data = row_.toPostDetails()
+                if (data != null) {
+                    data.comments = PostCommentTable.select { PostCommentTable.postId eq id }.mapNotNull { comment_ ->
+                        comment_.toComment()
+                    }
+                }
+                data
+            }
+        }
+
+    override suspend fun deletePostComment(id: Int): PostDetails {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun incrementPostCounter(id: Int) {
 
         val counter: Int? = dbQuery {
             PostReachTable.select { PostReachTable.postId eq id }.map { reach_ ->
@@ -66,22 +83,6 @@ class UserServiceImpl : UserService {
                 }
             }
         }
-
-        return dbQuery {
-            PostDescriptionTable.select { PostDescriptionTable.postId eq id }.firstNotNullOf { row_ ->
-                val data = row_.toPostDetails()
-                if (data != null) {
-                    data.comments = PostCommentTable.select { PostCommentTable.postId eq id }.mapNotNull { comment_ ->
-                        comment_.toComment()
-                    }
-                }
-                data
-            }
-        }
-    }
-
-    override suspend fun deletePostComment(id: Int): PostDetails {
-        TODO("Not yet implemented")
     }
 
     override suspend fun insertMocData(id: Int) {

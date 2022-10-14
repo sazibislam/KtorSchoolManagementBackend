@@ -40,4 +40,6 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
             return BaseResponse.SuccessResponse(data = userService.deletePostComment(commentId))
         } ?: BaseResponse.ErrorResponse(message = USER_ID_FIELD_FAILURE)
 
+    override suspend fun incrementPostCounter(id: Int) = userService.incrementPostCounter(id)
+
 }

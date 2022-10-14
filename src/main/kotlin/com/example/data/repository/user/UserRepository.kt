@@ -11,5 +11,6 @@ interface UserRepository {
     suspend fun getPosts(id: Int): BaseResponse<Any>
     suspend fun getPostDetails(postId: Int?): BaseResponse<Any>
     suspend fun deletePostComment(commentId: Int?): BaseResponse<Any>
+    suspend fun incrementPostCounter(id: Int)
 
 }

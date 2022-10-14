@@ -60,6 +60,7 @@ fun Application.userRoutes(repository: UserRepository) {
                         get {
                             val postId = call.request.queryParameters["post_id"]?.toIntOrNull()
                             val result = repository.getPostDetails(postId)
+                            postId?.let { id_ -> repository.incrementPostCounter(id = id_) }
                             call.respond(result.statusCode, result)
                         }
                     }
