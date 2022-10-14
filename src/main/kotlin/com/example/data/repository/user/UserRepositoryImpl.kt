@@ -3,7 +3,6 @@ package com.example.data.repository.user
 import com.example.data.response.BaseResponse
 import com.example.data.service.user.UserService
 import com.example.utils.GENERIC_ERROR
-import com.example.utils.USER_ID_FIELD_FAILURE
 import com.example.utils.USER_LOGOUT_SUCCESS
 
 class UserRepositoryImpl(private val userService: UserService) : UserRepository {
@@ -33,12 +32,13 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
     override suspend fun getPostDetails(postId: Int?): BaseResponse<Any> =
         postId?.let {
             return BaseResponse.SuccessResponse(data = userService.getPostDetails(postId))
-        } ?: BaseResponse.ErrorResponse(message = USER_ID_FIELD_FAILURE)
+        } ?: BaseResponse.ErrorResponse(message = GENERIC_ERROR)
 
     override suspend fun deletePostComment(commentId: Int?): BaseResponse<Any> =
         commentId?.let {
-            return BaseResponse.SuccessResponse(data = userService.deletePostComment(commentId))
-        } ?: BaseResponse.ErrorResponse(message = USER_ID_FIELD_FAILURE)
+            return if (userService.deletePostComment(commentId)) BaseResponse.SuccessResponse(data = "")
+            else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+        } ?: BaseResponse.ErrorResponse(message = GENERIC_ERROR)
 
     override suspend fun incrementPostCounter(id: Int) = userService.incrementPostCounter(id)
 

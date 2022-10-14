@@ -56,9 +56,8 @@ class UserServiceImpl : UserService {
             }
         }
 
-    override suspend fun deletePostComment(id: Int): PostDetails {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deletePostComment(commentId: Int): Boolean =
+        dbQuery { PostCommentTable.deleteWhere { PostCommentTable.id eq commentId } > 0 }
 
     override suspend fun incrementPostCounter(id: Int) {
 
