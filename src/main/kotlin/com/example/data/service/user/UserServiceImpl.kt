@@ -9,6 +9,7 @@ import com.example.data.model.Notification
 import com.example.data.model.Post
 import com.example.data.model.PostDetails
 import com.example.data.model.User
+import com.example.plugins.route.user.request.PostCommentParams
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -55,6 +56,18 @@ class UserServiceImpl : UserService {
                 data
             }
         }
+
+    override suspend fun postComment(params: PostCommentParams): Boolean {
+        var statement = 0
+
+        dbQuery {
+            statement = PostCommentTable.insert {
+                it[postId] = params.postId.toInt()
+                it[comment] = params.comment
+            } get PostCommentTable.id
+        }
+        return statement > 0
+    }
 
     override suspend fun deletePostComment(commentId: Int): Boolean =
         dbQuery { PostCommentTable.deleteWhere { PostCommentTable.id eq commentId } > 0 }

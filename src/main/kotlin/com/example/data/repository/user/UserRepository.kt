@@ -1,6 +1,7 @@
 package com.example.data.repository.user
 
 import com.example.data.response.BaseResponse
+import com.example.plugins.route.user.request.PostCommentParams
 
 
 interface UserRepository {
@@ -10,6 +11,7 @@ interface UserRepository {
     suspend fun deleteNotification(id: Int): BaseResponse<Any>
     suspend fun getPosts(id: Int): BaseResponse<Any>
     suspend fun getPostDetails(postId: Int?): BaseResponse<Any>
+    suspend fun postComment(params: PostCommentParams): BaseResponse<Any>
     suspend fun deletePostComment(commentId: Int?): BaseResponse<Any>
     suspend fun incrementPostCounter(id: Int)
 

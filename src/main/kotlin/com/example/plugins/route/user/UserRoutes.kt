@@ -1,12 +1,14 @@
 package com.example.plugins.route.user
 
 import com.example.data.repository.user.UserRepository
+import com.example.plugins.route.user.request.PostCommentParams
 import com.example.plugins.security.UserPrincipalForUser
 import com.example.utils.PACKAGE_ANDROID
 import com.example.utils.PACKAGE_NAME
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
@@ -85,7 +87,9 @@ fun Application.userRoutes(repository: UserRepository) {
 
                     route("/post_comment") {
                         post {
-
+                            val params = call.receive<PostCommentParams>()
+                            val result = repository.postComment(params)
+                            call.respond(result.statusCode, result)
                         }
                     }
 

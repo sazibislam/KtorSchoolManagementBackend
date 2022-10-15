@@ -2,7 +2,9 @@ package com.example.data.repository.user
 
 import com.example.data.response.BaseResponse
 import com.example.data.service.user.UserService
+import com.example.plugins.route.user.request.PostCommentParams
 import com.example.utils.GENERIC_ERROR
+import com.example.utils.SUCCESS_MSG
 import com.example.utils.USER_LOGOUT_SUCCESS
 
 class UserRepositoryImpl(private val userService: UserService) : UserRepository {
@@ -33,6 +35,11 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
         postId?.let {
             return BaseResponse.SuccessResponse(data = userService.getPostDetails(postId))
         } ?: BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+
+    override suspend fun postComment(params: PostCommentParams): BaseResponse<Any> {
+        return if (userService.postComment(params)) BaseResponse.SuccessResponse(data = "", message = SUCCESS_MSG)
+        else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+    }
 
     override suspend fun deletePostComment(commentId: Int?): BaseResponse<Any> =
         commentId?.let {
