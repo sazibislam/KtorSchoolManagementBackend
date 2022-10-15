@@ -18,5 +18,6 @@ interface UserService {
     suspend fun deletePostComment(commentId: Int): Boolean
     suspend fun incrementPostCounter(id: Int)
     suspend fun insertMocData(id: Int)
+    suspend fun deletePost(postId: Int): Boolean
 
 }

@@ -16,5 +16,6 @@ interface UserRepository {
     suspend fun postComment(params: PostCommentParams): BaseResponse<Any>
     suspend fun deletePostComment(commentId: Int?): BaseResponse<Any>
     suspend fun incrementPostCounter(id: Int)
+    suspend fun deletePost(postId: Int?): BaseResponse<Any>
 
 }

@@ -157,6 +157,21 @@ class UserServiceImpl : UserService {
         }
     }
 
+    override suspend fun deletePost(postId: Int): Boolean {
+        return try {
+            dbQuery {
+                PostDescriptionTable.deleteWhere { PostDescriptionTable.postId eq postId }
+                PostReachTable.deleteWhere { PostReachTable.postId eq postId }
+                PostTagTable.deleteWhere { PostTagTable.postId eq postId }
+                PostCommentTable.deleteWhere { PostCommentTable.postId eq postId }
+                PostTable.deleteWhere { PostTable.id eq postId } > 0
+            }
+        } catch (ex: Exception) {
+            print(ex.message)
+            false
+        }
+    }
+
     override suspend fun insertMocData(id: Int) {
 
         var statement: InsertStatement<Number>? = null

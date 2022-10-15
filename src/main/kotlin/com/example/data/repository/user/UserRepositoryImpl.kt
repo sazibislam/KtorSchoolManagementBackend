@@ -66,7 +66,6 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
                 print("sazib ${e.message}")
             }
         }
-        print("addPost $tag")
         return BaseResponse.SuccessResponse(data = userService.addPost(id, fileName, description, title, tag))
     }
 
@@ -91,5 +90,11 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
         } ?: BaseResponse.ErrorResponse(message = GENERIC_ERROR)
 
     override suspend fun incrementPostCounter(id: Int) = userService.incrementPostCounter(id)
+    override suspend fun deletePost(postId: Int?): BaseResponse<Any> =
+        postId?.let {
+            return if (userService.deletePost(postId)) BaseResponse.SuccessResponse(data = "")
+            else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+        } ?: BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+
 
 }

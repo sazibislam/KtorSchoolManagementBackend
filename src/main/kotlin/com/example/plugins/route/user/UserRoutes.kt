@@ -78,6 +78,14 @@ fun Application.userRoutes(repository: UserRepository) {
 
                     route("/delete_post") {
                         post {
+                            val postId = call.request.queryParameters["post_id"]?.toIntOrNull()
+                            val result = repository.deletePost(postId)
+                            call.respond(result.statusCode, result)
+                        }
+                    }
+
+                    route("/update_post") {
+                        post {
 
                         }
                     }
