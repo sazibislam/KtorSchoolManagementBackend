@@ -16,6 +16,27 @@ fun Application.userRoutes(repository: UserRepository) {
     routing {
         header(PACKAGE_NAME, PACKAGE_ANDROID) {
 
+//            accept(ContentType("multipart", "form-data")) {
+//                authenticate {
+//
+//                    route("/add_post") {
+//                        post {
+//                            val principal = call.principal<UserPrincipalForUser>()
+//
+//
+//                            val result = repository.getUser(principal?.id!!)
+//                            call.respond(result.statusCode, result)
+//                        }
+//                    }
+//
+//                    route("/update_post") {
+//                        post {
+//
+//                        }
+//                    }
+//                }
+//            }
+
             accept(ContentType("application", "json")) {
                 authenticate {
                     route("/logout") {
@@ -67,15 +88,12 @@ fun Application.userRoutes(repository: UserRepository) {
                         }
                     }
 
-                    route("/post") {
+                    route("/add_post") {
                         post {
                             val principal = call.principal<UserPrincipalForUser>()
-                        }
-                    }
-
-                    route("/update_post") {
-                        post {
-
+                            val multiPartData = call.receiveMultipart()
+                            val result = repository.addPost(principal?.id!!, multiPartData)
+                            call.respond(result.statusCode, result)
                         }
                     }
 

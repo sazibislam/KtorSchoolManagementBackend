@@ -6,6 +6,10 @@ import com.example.plugins.route.user.request.PostCommentParams
 import com.example.utils.GENERIC_ERROR
 import com.example.utils.SUCCESS_MSG
 import com.example.utils.USER_LOGOUT_SUCCESS
+import io.ktor.http.content.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
 
 class UserRepositoryImpl(private val userService: UserService) : UserRepository {
 
@@ -25,6 +29,44 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
     override suspend fun deleteNotification(id: Int): BaseResponse<Any> {
         return if (userService.deleteAllNotification(id)) BaseResponse.SuccessResponse(data = "")
         else BaseResponse.ErrorResponse(message = GENERIC_ERROR)
+    }
+
+    override suspend fun addPost(id: Int, partData: MultiPartData): BaseResponse<Any> {
+
+        var description = ""
+        var title = ""
+        var tag = ""
+        var fileName = ""
+
+        withContext(Dispatchers.IO) {
+            try {
+                partData.forEachPart { part_ ->
+
+                    when (part_) {
+                        is PartData.FormItem -> {
+                            when (part_.name) {
+                                "title" -> title = part_.value
+                                "description" -> description = part_.value
+                                "tag" -> tag = part_.value
+                            }
+                        }
+                        is PartData.FileItem -> {
+                            fileName = part_.originalFileName!!
+                            val file = File("/upload/post/$fileName")
+
+                            part_.streamProvider().use { item ->
+                                file.outputStream().buffered().use { item.copyTo(it) }
+                            }
+                        }
+                        else -> {}
+                    }
+                    part_.dispose()
+                }
+            } catch (e: Exception) {
+                print("sazib ${e.message}")
+            }
+        }
+        return BaseResponse.SuccessResponse(data = userService.addPost(id, fileName, description, title, tag))
     }
 
     override suspend fun getPosts(id: Int): BaseResponse<Any> {

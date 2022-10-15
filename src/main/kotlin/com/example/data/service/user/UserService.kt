@@ -11,6 +11,7 @@ interface UserService {
     suspend fun getUser(id: Int): User
     suspend fun getAllNotification(id: Int): List<Notification>
     suspend fun deleteAllNotification(id: Int): Boolean
+    suspend fun addPost(userId: Int, fileName: String, description: String, title: String, tag: String?): Boolean
     suspend fun getPosts(id: Int): List<Post>
     suspend fun getPostDetails(id: Int): PostDetails
     suspend fun postComment(params: PostCommentParams): Boolean

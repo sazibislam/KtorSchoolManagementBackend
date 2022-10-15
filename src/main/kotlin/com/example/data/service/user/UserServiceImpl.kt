@@ -32,6 +32,17 @@ class UserServiceImpl : UserService {
         NotificationTable.deleteWhere { NotificationTable.userId eq id } > 0
     }
 
+    override suspend fun addPost(
+        userId: Int,
+        fileName: String,
+        description: String,
+        title: String,
+        tag: String?
+    ): Boolean {
+        print("sazib, $fileName $description $title $tag")
+        return true
+    }
+
     override suspend fun getPosts(id: Int): List<Post> = dbQuery {
         PostTable.select { PostTable.userId eq id }.mapNotNull { row_ ->
             val data = row_.toPost()
