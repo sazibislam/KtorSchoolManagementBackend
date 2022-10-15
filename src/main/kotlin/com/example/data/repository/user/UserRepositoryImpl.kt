@@ -66,6 +66,7 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
                 print("sazib ${e.message}")
             }
         }
+        print("addPost $tag")
         return BaseResponse.SuccessResponse(data = userService.addPost(id, fileName, description, title, tag))
     }
 

@@ -10,6 +10,7 @@ import com.example.data.model.Post
 import com.example.data.model.PostDetails
 import com.example.data.model.User
 import com.example.plugins.route.user.request.PostCommentParams
+import com.example.utils.SUCCESS_MSG
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -38,9 +39,57 @@ class UserServiceImpl : UserService {
         description: String,
         title: String,
         tag: String?
-    ): Boolean {
-        print("sazib, $fileName $description $title $tag")
-        return true
+    ): String {
+
+        val blogPostId = dbQuery {
+            PostTable.insert {
+                it[PostTable.userId] = userId
+                it[image] = fileName
+                it[published] = true
+                it[PostTable.title] = title
+                it[slug] = ""
+            } get PostTable.id
+        }
+
+        dbQuery {
+            PostDescriptionTable.insert {
+                it[postId] = blogPostId
+                it[PostDescriptionTable.description] = description
+            }
+        }
+
+        tag?.let { tag_ ->
+
+            var tagId: Int? = null
+            dbQuery {
+                tagId = TagTable.select { TagTable.name eq tag_ }.map { reach_ ->
+                    reach_[TagTable.id]
+                }.firstOrNull()
+            }
+
+            when (tagId) {
+                null -> {
+                    dbQuery {
+                        val tagTableId = TagTable.insert { it[name] = tag } get TagTable.id
+                        PostTagTable.insert {
+                            it[postId] = blogPostId
+                            it[PostTagTable.tagId] = tagTableId
+                        }
+                    }
+                }
+                else -> {
+                    dbQuery {
+                        PostTagTable.insert {
+                            it[postId] = blogPostId
+                            it[PostTagTable.tagId] = tagId!!
+                        }
+                    }
+                }
+            }
+        }
+
+        print("addPost, $fileName $description $title $tag")
+        return SUCCESS_MSG
     }
 
     override suspend fun getPosts(id: Int): List<Post> = dbQuery {
