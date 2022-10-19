@@ -17,11 +17,6 @@ class UserRepositoryImpl(private val userService: UserService) : UserRepository 
         return BaseResponse.SuccessResponse(data = userService.getUser(id))
     }
 
-    override suspend fun logoutUser(id: Int): BaseResponse<Any> {
-        //invalidate token
-        return BaseResponse.SuccessResponse(data = "", message = USER_LOGOUT_SUCCESS)
-    }
-
     override suspend fun getNotification(id: Int): BaseResponse<Any> {
         return BaseResponse.SuccessResponse(data = userService.getAllNotification(id))
     }

@@ -7,7 +7,6 @@ import io.ktor.http.content.*
 
 interface UserRepository {
     suspend fun getUser(id: Int): BaseResponse<Any>
-    suspend fun logoutUser(id: Int): BaseResponse<Any>
     suspend fun getNotification(id: Int): BaseResponse<Any>
     suspend fun deleteNotification(id: Int): BaseResponse<Any>
     suspend fun addPost(id: Int, partData: MultiPartData): BaseResponse<Any>

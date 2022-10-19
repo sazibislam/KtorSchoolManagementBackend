@@ -1,12 +1,12 @@
 package com.example.data.repository.auth
 
+import com.example.data.model.User
 import com.example.data.response.BaseResponse
 import com.example.data.response.OTPResponse
 import com.example.data.service.auth.AuthService
 import com.example.plugins.route.auth.CreateUserParams
 import com.example.plugins.route.auth.UserLoginParams
 import com.example.plugins.route.auth.UserParams
-import com.example.plugins.security.token.JwtConfig
 import com.example.utils.*
 
 class AuthRepositoryImpl(
@@ -26,16 +26,8 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun loginUser(params: UserLoginParams): BaseResponse<Any> {
-        val user = authService.loginUser(params.email, params.password)
-        return if (user != null) {
-            val token = JwtConfig.instance.createAccessToken(id = user.id, uuid = params.uuid)
-            user.authToken = token
-            BaseResponse.SuccessResponse(data = user, message = USER_LOGIN_SUCCESS)
-        } else {
-            BaseResponse.ErrorResponse(message = USER_LOGIN_FAILURE)
-        }
-    }
+    override suspend fun loginUser(params: UserLoginParams): User? =
+        authService.loginUser(params.email, params.password)
 
     override suspend fun resetUserCred(params: UserParams): BaseResponse<Any> {
 

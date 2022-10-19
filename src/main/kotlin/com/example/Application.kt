@@ -7,6 +7,7 @@ import com.example.plugins.configureSerialization
 import com.example.plugins.security.configureSecurity
 import com.example.plugins.security.configureStatusPages
 import io.ktor.server.application.*
+import io.ktor.server.sessions.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -19,5 +20,6 @@ fun Application.module() {
     configureMonitoring()
     configureStatusPages()
     configureSecurity()
+//    configureSession()
 //    configureAppLog()
 }

@@ -1,10 +1,12 @@
 package com.example.plugins.route.user
 
 import com.example.data.repository.user.UserRepository
+import com.example.data.response.BaseResponse
 import com.example.plugins.route.user.request.PostCommentParams
 import com.example.plugins.security.UserPrincipalForUser
 import com.example.utils.PACKAGE_ANDROID
 import com.example.utils.PACKAGE_NAME
+import com.example.utils.USER_LOGOUT_SUCCESS
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -20,8 +22,8 @@ fun Application.userRoutes(repository: UserRepository) {
                 authenticate {
                     route("/logout") {
                         post {
-                            val principal = call.principal<UserPrincipalForUser>()
-                            val result = repository.logoutUser(principal?.id!!)
+//                            val principal = call.principal<UserPrincipalForUser>()
+                            val result = BaseResponse.SuccessResponse(data = "", message = USER_LOGOUT_SUCCESS)
                             call.respond(result.statusCode, result)
                         }
                     }
@@ -33,7 +35,6 @@ fun Application.userRoutes(repository: UserRepository) {
                             call.respond(result.statusCode, result)
                         }
                     }
-
                     route("/notification") {
                         get {
                             val principal = call.principal<UserPrincipalForUser>()
@@ -71,7 +72,7 @@ fun Application.userRoutes(repository: UserRepository) {
                         post {
                             val principal = call.principal<UserPrincipalForUser>()
                             val multiPartData = call.receiveMultipart()
-                            val result = repository.addPost(principal?.id!!, multiPartData)
+                            val result = repository.addPost(id = principal?.id!!, partData = multiPartData)
                             call.respond(result.statusCode, result)
                         }
                     }
