@@ -20,6 +20,6 @@ internal val EMAIL_ADDRESS_PATTERN = Pattern.compile(
 )
 
 const val PACKAGE_NAME = "package"
-const val PACKAGE_ANDROID = "com.tn.aipos"
+const val PACKAGE_ANDROID = "com.sazib.eschool"
 const val AiPOS_APP_PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.sazib.my_feedback"
 const val APP_PLAY_STORE_LINK = "https://play.google.com/store/apps/dev?id=6756023505737181359"

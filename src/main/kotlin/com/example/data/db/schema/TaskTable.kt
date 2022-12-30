@@ -11,7 +11,7 @@ object TaskTable : Table("tasks") {
     val taskDetails = text("details")
     val taskLocation = text("location")
     val isCompleted = bool("is_completed").clientDefault { false }
-    val completedAt = text("completed_at")
+    val completedAt = datetime("completed_at")
     val startAt = datetime("start_at")
     val endAt = datetime("end_at")
     val createdAt = datetime("created_at").clientDefault { LocalDateTime.now() }
