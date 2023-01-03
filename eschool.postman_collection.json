@@ -1,0 +1,1629 @@
+{
+	"info": {
+		"_postman_id": "9bb0fca8-fd19-49b8-8280-82f65b9e3f1e",
+		"name": "eschool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21256894"
+	},
+	"item": [
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\":\"sazib Test\",\r\n    \"email\":\"test@sazib.com\",\r\n    \"password\":\"12345\",\r\n    \"avatar\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"register"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"test\",\r\n    \"email\":\"test@tet.com\",\r\n    \"password\":\"12345\",\r\n    \"avatar\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/v1/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"fullName\": \"test\",\n        \"avatar\": \"test\",\n        \"email\": \"test@tet.com\",\n        \"authToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6Mn0.LHGFibUC-OvnuIq0iS1Xu2ByRQc8JDXWzaFT_1hZF_Q\",\n        \"createdAt\": \"2022-06-20T21:55:26.931401\"\n    },\n    \"message\": \"User successfully registered\"\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "{{package}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"email\":\"sazibislam1@gmail.com\",\r\n        \"password\":\"12345\",\r\n        \"uuid\":\"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://103.81.175.216/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"103",
+						"81",
+						"175",
+						"216"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test@tet.com\",\r\n    \"password\":\"12345\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/v1/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"fullName\": \"test\",\n        \"avatar\": \"test\",\n        \"email\": \"test@tet.com\",\n        \"authToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6Mn0.LHGFibUC-OvnuIq0iS1Xu2ByRQc8JDXWzaFT_1hZF_Q\",\n        \"createdAt\": \"2022-06-20T21:55:26.931401\"\n    },\n    \"message\": \"User successfully logged in\"\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbmRyb2lkIiwiYXVkIjoibXktc3RvcnktYXBwIiwiaXNzIjoibXktc3RvcnktYXBwIiwiaWQiOjEwLCJleHAiOjE2NjY3ODUyMjAsImlhdCI6MTY2NjE4MDQyMCwidXVpZCI6IjEyMzQifQ.cfUBDEGZBcRYaHxflN3zrSvzrhKXfIUu8vpSCm4MCCM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\",\r\n    \"password\":\"12345\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forget",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/forget",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"forget"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "forget",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/v1/forget",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"forget"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"otp\": \"8165\"\n    },\n    \"message\": \"An otp has been sent to your registered email.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "reset",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\",\r\n    \"password\":\"12345\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/reset",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"reset"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "reset",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\",\r\n    \"password\":\"12345\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/v1/reset",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"\",\n    \"message\": \"User credential updated successfully.\",\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "verify",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/verify",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"verify"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sazibislam1@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/v1/verify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"otp\": \"3562\"\n    },\n    \"message\": \"An otp has been sent to your registered email.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbmRyb2lkIiwiYXVkIjoibXktc3RvcnktYXBwIiwiaXNzIjoibXktc3RvcnktYXBwIiwiaWQiOjEwLCJleHAiOjE2NjY3ODc3ODQsImlhdCI6MTY2NjE4Mjk4NCwidXVpZCI6IjEyMzQifQ.i-1oj-atRXFS5b_omvMwcw1P2LXa8CdHRUVZjp1RFFA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/user",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"fullName\": \"test\",\n        \"avatar\": \"test\",\n        \"email\": \"test@te.com\",\n        \"createdAt\": \"2022-06-20T22:38:04.297117\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get_post",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/get_post",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_post"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_post",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/get_post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"get_post"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 14,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:49:27.164844\",\n            \"updatedAt\": \"2022-10-14T00:49:27.164844\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"reach\": \"1\",\n            \"createdAt\": \"2022-10-14T00:51:12.533327\",\n            \"updatedAt\": \"2022-10-14T00:51:12.533327\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:52:13.998043\",\n            \"updatedAt\": \"2022-10-14T00:52:13.998043\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:52:58.869774\",\n            \"updatedAt\": \"2022-10-14T00:52:58.869774\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:58:32.080953\",\n            \"updatedAt\": \"2022-10-14T00:58:32.080953\"\n        },\n        {\n            \"id\": 19,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:59:54.366014\",\n            \"updatedAt\": \"2022-10-14T00:59:54.366014\"\n        },\n        {\n            \"id\": 20,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T00:59:56.454689\",\n            \"updatedAt\": \"2022-10-14T00:59:56.454689\"\n        },\n        {\n            \"id\": 21,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T11:38:41.537134\",\n            \"updatedAt\": \"2022-10-14T11:38:41.537134\"\n        },\n        {\n            \"id\": 22,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T11:40:13.457795\",\n            \"updatedAt\": \"2022-10-14T11:40:13.457795\"\n        },\n        {\n            \"id\": 23,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T11:40:49.986129\",\n            \"updatedAt\": \"2022-10-14T11:40:49.986129\"\n        },\n        {\n            \"id\": 24,\n            \"title\": \"Test Title 10\",\n            \"image\": \"\",\n            \"published\": true,\n            \"createdAt\": \"2022-10-14T11:41:14.891598\",\n            \"updatedAt\": \"2022-10-14T11:41:14.891598\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_post_details",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/get_post_details?post_id=15",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_post_details"
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_post_details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/get_post_details?post_id=15",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"get_post_details"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"postId\": 15,\n        \"description\": \"Test Description\",\n        \"comments\": [\n            {\n                \"id\": 1,\n                \"comment\": \"Test Comment\",\n                \"createdAt\": \"2022-10-14T00:59:54.423713\"\n            },\n            {\n                \"id\": 2,\n                \"comment\": \"Test Comment\",\n                \"createdAt\": \"2022-10-14T00:59:56.465187\"\n            },\n            {\n                \"id\": 3,\n                \"comment\": \"Test Comment\",\n                \"createdAt\": \"2022-10-14T11:40:50.065830\"\n            },\n            {\n                \"id\": 4,\n                \"comment\": \"Test Comment\",\n                \"createdAt\": \"2022-10-14T11:41:14.969016\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/notification",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"notification"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "notification_failed",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/notification",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid authentication token, please login again\",\n    \"status\": \"error\"\n}"
+				},
+				{
+					"name": "notification",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/notification",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Test Title\",\n            \"note\": \"Test Note\",\n            \"createdAt\": \"2022-10-13T11:04:11.459509\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Test Title\",\n            \"note\": \"Test Note\",\n            \"createdAt\": \"2022-10-13T11:04:13.304758\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete_notification",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/delete_notification",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_notification"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete_notification_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/delete_notification",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"delete_notification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"\",\n    \"status\": \"success\"\n}"
+				},
+				{
+					"name": "delete_notification_error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/delete_notification",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"delete_notification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Some error occurred! Please try again later.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete_comment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/delete_comment?comment_id=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_comment"
+					],
+					"query": [
+						{
+							"key": "comment_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete_comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/delete_comment?comment_id=5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"delete_comment"
+							],
+							"query": [
+								{
+									"key": "comment_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete_post",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/delete_post?post_id=14",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_post"
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete_post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/delete_post?post_id=14",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"delete_post"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "post_comment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\":15,\r\n    \"comment\":\"Test comment from postman.\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/post_comment",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"post_comment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "post_comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\":15,\r\n    \"comment\":\"Test comment from postman.\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/post_comment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"post_comment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully updated.\",\n    \"status\": \"success\",\n    \"data\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add_post",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "package",
+						"value": "com.tn.aipos",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "description",
+							"value": "Test Canada",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Canada",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "test_item",
+							"type": "text"
+						},
+						{
+							"key": "img",
+							"type": "file",
+							"src": "/D:/Desktop/blog.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/add_post",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"add_post"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add_post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "package",
+								"value": "com.tn.aipos",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "description",
+									"value": "Test Canada",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Canada",
+									"type": "text"
+								},
+								{
+									"key": "tag",
+									"value": "test_item",
+									"type": "text"
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/D:/Desktop/blog.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/add_post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"add_post"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": \"Successfully updated.\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJteS1zdG9yeS1hcHAiLCJpc3MiOiJteS1zdG9yeS1hcHAiLCJpZCI6MTB9.qrhywPtldIGuAUU794dQVhjUjcGezxWx2pjGnnQrWD8"
+		},
+		{
+			"key": "package",
+			"value": "com.sazib.eschool"
+		}
+	]
+}
